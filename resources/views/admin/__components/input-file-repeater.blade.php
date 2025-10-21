@@ -1,0 +1,119 @@
+<!--begin::Input group-->
+<div id="{{$repeaterName}}_repeater_wrapper"
+     class="col-md-12 row g-9 mb-6 " >
+
+    <!--begin::Repeater-->
+    <div id="kt_{{$repeaterName}}_repeater_advanced">
+        <!--begin::Form group-->
+        <div class="form-group">
+
+            @if(isset($title))
+                @include('admin.__components.label', ['value' => $title])
+            @endif
+
+
+
+            <div data-repeater-list="{{$repeaterName}}">
+                @if(isset($entityInstanceValues))
+
+                    @foreach($entityInstanceValues as  $entityInstanceValue)
+
+                        <div data-repeater-item>
+                            @if(isset($entityInstanceValue[$inputName]))
+
+                                <div class="form-group row mb-5">
+                                    <div class="col-lg-10 mx-2">
+
+                                        <input  type="file" name="{{$inputName}}" value="{{$entityInstanceValue[$inputName]}}">
+
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <a href="javascript:" data-repeater-delete
+                                           class="btn btn-sm btn-light-danger">
+                                            <i class="la la-trash-o fs-3"></i>حذف
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+                                <div data-repeater-item>
+                                    <div class="form-group row mb-5">
+                                        <div class="col-lg-10 mx-2">
+                                            <input type="file" name="{{$inputName}}" >
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <a href="javascript:" data-repeater-delete
+                                               class="btn btn-sm btn-light-danger">
+                                                <i class="la la-trash-o fs-3"></i>حذف
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
+                    @endforeach
+                @else
+                    <div data-repeater-item>
+                        <div class="form-group row mb-5">
+                            <div class="">
+                                <input type="file"  class="form-control" name="{{$inputName}}" id="customFile" />
+                            </div>
+
+                            <div class="col-md-5 mt-2">
+                                <a href="javascript:    " data-repeater-delete
+                                   class="btn btn-sm btn-light-danger">
+                                    <i class="la la-trash-o fs-3"></i>حذف
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+
+            </div>
+        </div>
+        <!--end::Form group-->
+
+        <!--begin::Form group-->
+        <div class="form-group">
+            <a href="javascript:" data-repeater-create class="btn btn-light-primary">
+                <i class="la la-plus"></i>افزودن
+            </a>
+        </div>
+        <!--end::Form group-->
+    </div>
+    <!--end::Repeater-->
+
+</div>
+<!--end::Input group-->
+@error($inputName)
+<p class="text-danger">{{$message}}</p>
+@enderror
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+
+<script>
+    $('#kt_{{$repeaterName}}_repeater_advanced').repeater({
+        initEmpty: false,
+
+
+        show: function () {
+            $(this).slideDown();
+
+        },
+
+
+        hide: function (deleteElement) {
+            if(confirm('آیااز حذف این مورد اطمینان دارید ؟')) {
+                $(this).slideUp(deleteElement);
+            }
+        },
+
+        ready: function(){
+
+        }
+    });
+</script>

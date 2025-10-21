@@ -1,0 +1,18 @@
+﻿/*@import url(fontiran.css); !* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد *!*/
+/*body {*/
+/*	font-family: IRANSans !important;*/
+/*	font-weight: 300;*/
+/*	direction: rtl;*/
+/*	margin: 0;*/
+/*}*/
+/*h1, h2, h3, h4, h5, h6,input, textarea, button, p, div, a {*/
+/*	font-family: IRANSans !important;*/
+/*}*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body {
+    font-family: 'Noto Sans Arabic', sans-serif ;
+}
+h1, h2, h3, h4, h5, h6,input, textarea, button, p, div, a {
+    font-family: 'Noto Sans Arabic', sans-serif;
+}

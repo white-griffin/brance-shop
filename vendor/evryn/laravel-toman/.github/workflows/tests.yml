@@ -1,0 +1,84 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  linux_tests:
+    runs-on: ubuntu-24.04
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ['8.2']
+        laravel: ['11.*', '12.*']
+        stability: [prefer-lowest, prefer-stable]
+        include:
+          - laravel: 12.*
+            stability: prefer-stable
+            coverage: ☂ 
+
+    name: ${{ matrix.coverage }}PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }} - Ubuntu 20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl
+          tools: composer:v2
+          coverage: xdebug
+
+      - name: Determine Testbench Version
+        id: vars
+        run: |
+          if [[ "${{ matrix.laravel }}" == 11.* ]]; then
+            echo "testbench=9.*" >> $GITHUB_OUTPUT
+          elif [[ "${{ matrix.laravel }}" == 12.* ]]; then
+            echo "testbench=10.*" >> $GITHUB_OUTPUT
+          else
+            echo "Unsupported Laravel version"
+            exit 1
+          fi
+
+      - name: Set Laravel and Testbench versions
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: |
+            composer require --no-update --no-interaction \
+              "illuminate/support:${{ matrix.laravel }}" \
+              "orchestra/testbench:${{ steps.vars.outputs.testbench }}"
+
+      - name: Install dependencies
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+
+      - name: Execute tests
+        continue-on-error: false
+        run: vendor/bin/phpunit
+        if: '${{ !matrix.coverage }}'
+
+      - name: Execute tests with coverage
+        continue-on-error: false
+        run: vendor/bin/phpunit --coverage-clover coverage.xml
+        if: '${{ matrix.coverage }}'
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
+        if: '${{ matrix.coverage }}'
