@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>مگریکو</title>
+    <title>برنس شاپ</title>
     <meta name="author" content="ukieweb" />
     <meta name="keywords" content=" " />
     <meta name="description" content="Balk - Page Template" />
@@ -51,7 +51,7 @@
 
     <!-- End Balk -->
 
-    <h3 class="title">!!! در حال ساخت مگریکو هستیم ، به زودی خواهیم آمد </h3>
+    <h3 class="title">!!! در حال ساخت برنس شاپ هستیم ، به زودی خواهیم آمد </h3>
 
     <!-- Watch -->
     <div id="watch">
