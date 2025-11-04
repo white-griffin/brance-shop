@@ -25,6 +25,7 @@ class File extends Model
 
         return [
             'image/jpeg' => Constant::IMAGE,
+            'image/webp' => Constant::IMAGE,
             'image/png' => Constant::IMAGE,
             'image/jpg' => Constant::IMAGE,
             'image/gif' => Constant::GIF,

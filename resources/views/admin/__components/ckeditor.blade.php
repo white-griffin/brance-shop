@@ -17,18 +17,26 @@
             },
             toolbar: {
                 items: [
-                    'ckfinder', 'imageUpload',  'imageTextAlternative', 'mediaEmbed', '|',
-
-                    'fontfamily', 'fontsize',  'fontColor', 'fontBackgroundColor',  'blockQuote','|',
-                    'bold', 'italic', 'strikethrough', 'underline',  'horizontalLine','subscript',
-                    'bulletedList', 'numberedList', 'todoList',  'superscript', 'link', '|',
                     'heading', '|',
-                    'undo', 'redo',
-                    'highlight', 'removeHighlight', '|',
-                    'alignment', 'selectAll', '|',
-                    'Indent', 'Outdent', '|',
+                    'bold', 'italic', 'strikethrough', 'underline', 'blockQuote', 'horizontalLine', '|',
+                    'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor', '|',
+                    'alignment', '|',
+                    'bulletedList', 'numberedList', 'todoList', '|',
+                    'link', '|',
+                    'ckfinder', 'imageUpload', 'mediaEmbed', '|',
                     'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|',
+                    'highlight', 'removeHighlight', '|',
+                    'undo', 'redo', '|',
                     'specialCharacters', 'viewSource'
+                ]
+            },
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'پاراگراف', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'سرفصل ۱', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'سرفصل ۲', class: 'ck-heading_heading2' },
+                    { model: 'heading3', view: 'h3', title: 'سرفصل ۳', class: 'ck-heading_heading3' },
+                    { model: 'heading4', view: 'h4', title: 'سرفصل ۴', class: 'ck-heading_heading4' }
                 ]
             },
             link: {
@@ -55,5 +63,4 @@
         .catch(error => {
             console.error(error);
         });
-
 </script>

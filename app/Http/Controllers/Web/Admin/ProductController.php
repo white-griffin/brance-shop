@@ -136,14 +136,22 @@ class ProductController extends Controller
 
     public function uploadGallery(Product $product)
     {
-        $type = File::getFileType(request()->file('file'));
-        $file = new File;
-        $file->name = $this->uploadFile(request()->file('file'), Constant::PRODUCT_GALLERY_PATH);
-        $file->type = $type;
-        $file->length = request('duration');
-        $file->link = request('link');
-        $file->alt = request('alt');
-        $result = $product->files()->saveMany([$file]);
+        DB::beginTransaction();
+        try {
+            $type = File::getFileType(request()->file('file'));
+            $file = new File;
+            $file->name = $this->uploadFile(request()->file('file'), Constant::PRODUCT_GALLERY_PATH);
+            $file->type = $type;
+            $file->length = request('duration');
+            $file->link = request('link');
+            $file->alt = request('alt');
+            $result = $product->files()->saveMany([$file]);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            dd($e->getMessage());
+            // return ApiResponse::fail();
+        }
 
     }
 

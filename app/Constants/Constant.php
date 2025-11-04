@@ -94,7 +94,7 @@ class Constant
     const PERCENT = 'percent';
     const AMOUNT = 'amount';
     const WHITE_MIME_TYPE_LIST = [
-        'image/jpeg', 'image/png', 'image/jpg', 'audio/mpeg', 'video/mp4','video/m4a','image/gif',
+        'image/jpeg', 'image/png', 'image/jpg', 'audio/mpeg', 'video/mp4','video/m4a','image/gif','image/webp',
         'application/zip', 'application/vnd.ms-powerpoint',
         'application/vnd.openxmlformats-officedocument.presentationml.presentation',
         'application/vnd.rar', 'text/plain', 'application/vnd.ms-excel',

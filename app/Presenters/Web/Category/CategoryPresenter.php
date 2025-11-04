@@ -9,6 +9,16 @@ use App\Presenters\Contracts\Presenter;
 
 class CategoryPresenter extends Presenter
 {
+
+    public function parentTitle(){
+
+        if (isset($this->entity->parent_id) && $this->entity->parent_id != null) {
+            return $this->entity->parent->title;
+        }
+
+        return '---';
+    }
+
     public function image()
     {
 

@@ -15,14 +15,6 @@ class TorobApiController extends Controller
 
         // Check request parameters and get products accordingly
         switch(true) {
-            case isset($request['page']):
-                if(!isset($request['sort'])) {
-                    return response()->json([
-                        'error' => 'sort parameter is not provided'
-                    ], 400);
-                }
-                $products = $this->getProductsByPageNumber($request);
-                break;
 
             case isset($request['page_urls']):
                 $products = $this->getProductsBySlug($request['page_urls']);
@@ -31,6 +23,16 @@ class TorobApiController extends Controller
             case isset($request['page_uniques']):
                 $products = $this->getProductsByIds($request['page_uniques']);
                 break;
+
+            case isset($request['page']):
+            if(!isset($request['sort'])) {
+                return response()->json([
+                    'error' => 'sort parameter is not provided'
+                ], 400);
+            }
+            $products = $this->getProductsByPageNumber($request);
+            break;
+
         }
 
         return $products;
@@ -45,7 +47,9 @@ class TorobApiController extends Controller
             $slug = end($parts);
             $slugs[] = $slug;
         }
+
         $products = Product::whereIn('slug', $slugs)->get();
+
         return $this->setResponse($products,1,count($products),1);
     }
 
