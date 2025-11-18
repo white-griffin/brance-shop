@@ -317,6 +317,8 @@
                                                     <div class="modal-footer">
 {{--                                                        <a href="{{ route('admin.orders.invoice.pdf', $order->id) }}" class="btn btn-primary">دانلود PDF</a>--}}
                                                         <button class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                                                        <button class="btn btn-primary" onclick="printInvoice({{ $order->id }})">پرینت</button>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -482,7 +484,42 @@
 @endsection
 @section('scripts')
     <script>
+        function printInvoice(invoiceId) {
+
+            let content = document.getElementById("invoiceContent_"+invoiceId).innerHTML;
+
+            let printWindow = window.open("", "_blank", "width=800,height=600");
+
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>پرینت فاکتور</title>
+                    <style>
+                        body {
+                            direction: rtl;
+                            font-family: sans-serif;
+                            padding: 20px;
+                        }
+                    </style>
+                </head>
+                <body>${content}</body>
+                </html>
+            `);
+
+            printWindow.document.close();
+            printWindow.focus();
+
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 500);
+        }
+    </script>
+
+    <script>
         $(document).ready(function() {
+
+
             $('.delivery-status-select').on('change', function() {
                 const orderId = $(this).data('order-id');
                 const deliveryStatus = $(this).val();
@@ -510,4 +547,5 @@
         });
     </script>
 @endsection
+
 

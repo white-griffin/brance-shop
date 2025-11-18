@@ -43,23 +43,51 @@
                                 ])
                                 <!--end::Input-->
                             </div>
-                            <div class="col-md-4">
-                                <!--begin::Label-->
-                                <label class=" form-label">دسته بندی والد </label>
-                                <!--end::Label-->
-                                <select class="form-control  form-select form-select-solid" id="parent_category" name="parent_category">
+                            <div class="col-md-4 position-relative">
+                            <label class="form-label">دسته بندی والد</label>
+
+                            <div style="position: relative;">
+                                <select class="form-control form-select form-select-solid"
+                                        id="parent_category"
+                                        name="parent_category">
+                                    <option value="">بدون والد</option>
+
                                     @if(isset($category->parent_id) && $category->parent_id != null)
-                                        <option value="{{$category->parent->id}}" selected="selected">
-                                            {{$category->parent->title}}</option>
+                                        <option value="{{ $category->parent->id }}" selected>
+                                            {{ $category->parent->title }}
+                                        </option>
                                     @endif
                                 </select>
 
-
-                                @error('parent_category')
-                                <p class="text-danger">{{$message}}</p>
-                                @enderror
-
+                                <!-- دکمه ضربدر -->
+                                <span id="clear_parent_category"
+                                    style="
+                                        position:absolute;
+                                        right:10px;
+                                        top:50%;
+                                        transform:translateY(-50%);
+                                        cursor:pointer;
+                                        font-weight:bold;
+                                        color:#888;
+                                        font-size:18px;
+                                    ">
+                                    &times;
+                                </span>
                             </div>
+
+                            @error('parent_category')
+                                <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
+
+                        <script>
+                            document.getElementById("clear_parent_category").addEventListener("click", function () {
+                                let select = document.getElementById("parent_category");
+                                select.value = ""; // مقدار خالی
+                                select.dispatchEvent(new Event("change")); // اگر listener دارد
+                            });
+                        </script>
+
                             <div class="col-md-4">
                                 <!--begin::Label-->
                                 <label class="required form-label">اسلاگ </label>
@@ -312,4 +340,5 @@
 
     </script>
 @endsection
+
 
