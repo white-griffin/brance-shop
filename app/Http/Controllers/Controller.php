@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\{File, Http};
 use App\Helpers\Hash\HashGenerator;
 use DateTime;
 use DateTimeZone;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Http;
 
 abstract class Controller
 {
@@ -30,6 +29,7 @@ abstract class Controller
 
     public function sendOtp($otp_code,$receptor)
     {
+        
         try {
             $url = "https://portal.amootsms.com/rest/SendQuickOTP";
 
