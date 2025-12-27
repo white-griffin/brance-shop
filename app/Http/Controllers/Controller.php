@@ -41,7 +41,7 @@ abstract class Controller
             $json = file_get_contents($url);
 
             $result = json_decode($json);
-
+            dd($result);
             return $result->Status;
         }catch (\Exception $e){
             return $e->getMessage();

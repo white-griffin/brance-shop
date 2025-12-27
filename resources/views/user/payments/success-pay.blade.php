@@ -176,8 +176,8 @@
         تراکنش شما با موفقیت ثبت شد
     </div>
     <div class="buttons-container">
-        <a href="https://magrico.ir/order" class="button secondary">پیگیری سفارش</a>
-        <a href="https://magrico.ir" class="button">بازگشت به صفحه اصلی</a>
+        <a href="https://branceshop.ir/order" class="button secondary">پیگیری سفارش</a>
+        <a href="https://branceshop.ir" class="button">بازگشت به صفحه اصلی</a>
     </div>
 </div>
 

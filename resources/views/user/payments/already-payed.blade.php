@@ -111,7 +111,7 @@
         برای راهنمایی بیشتر با پشتیبانی تماس بگیرید:
         <a href="tel:۰۹۱۵۳۹۰۰۶۱۶">۰۹۱۵۳۹۰۰۶۱۶</a>
     </div>
-    <a href="https://magrico.ir" class="button">بازگشت به صفحه اصلی</a>
+    <a href="https://branceshop.ir" class="button">بازگشت به صفحه اصلی</a>
 </div>
 </body>
 </html>

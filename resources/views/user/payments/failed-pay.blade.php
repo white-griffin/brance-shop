@@ -109,9 +109,9 @@
     <p>متأسفانه پرداخت شما با مشکل مواجه شد</p>
     <div class="support-info">
         برای راهنمایی بیشتر با پشتیبانی تماس بگیرید:
-        <a href="tel:۰۹۱۵۳۹۰۰۶۱۶">۰۹۱۵۳۹۰۰۶۱۶</a>
+        <a href="tel:09391937554">09391937554</a>
     </div>
-    <a href="https://magrico.ir" class="button">بازگشت به صفحه اصلی</a>
+    <a href="https://branceshop.ir" class="button">بازگشت به صفحه اصلی</a>
 </div>
 </body>
 </html>
